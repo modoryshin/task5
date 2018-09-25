@@ -48,22 +48,27 @@ namespace task5
         {
             FileStream f = new FileStream("output.txt", FileMode.OpenOrCreate);
             StreamWriter w = new StreamWriter(f);
-            double[] A = array;
-            for (int i = 0; i < A.Length; i++)
+            double[] arr = array;
+            int j;
+            int step = arr.Length / 2;
+            while (step > 0)
             {
-                for (int j = 0; j < A.Length - 1; j++)
+                for (int i = 0; i < (arr.Length - step); i++)
                 {
-                    if (A[j] > A[j + 1])
+                    j = i;
+                    while ((j >= 0) && (arr[j] > arr[j + step]))
                     {
-                        double z = A[j];
-                        A[j] = A[j + 1];
-                        A[j + 1] = z;
-                        w.WriteLine("Swap elements at indices {0} and {1}.",j+1,j+2);
+                        double tmp = arr[j];
+                        arr[j] = arr[j + step];
+                        arr[j + step] = tmp;
+                        w.WriteLine("Swap elements at indices {0} and {1}.",j+1,j+step+1);
+                        j -= step;
                     }
                 }
+                step = step / 2;
             }
             w.WriteLine("No more swaps needed.");
-            foreach(double x in A)
+            foreach(double x in arr)
             {
                 w.Write(x + " ");
             }
