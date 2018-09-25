@@ -49,16 +49,16 @@ namespace task5
             FileStream f = new FileStream("output.txt", FileMode.OpenOrCreate);
             StreamWriter w = new StreamWriter(f);
             double[] A = array;
-            for (int i = 0; i < A.Length-1; i++)
+            for (int i = 0; i < A.Length; i++)
             {
-                for (int j = i; j < A.Length; j++)
+                for (int j = 0; j < A.Length - 1; j++)
                 {
-                    if (A[i] > A[j])
+                    if (A[j] > A[j + 1])
                     {
-                        double z = A[i];
-                        A[i] = A[j];
-                        A[j] = z;
-                        w.WriteLine("Swap elements at indices {0} and {1}.",i+1,j+1);
+                        double z = A[j];
+                        A[j] = A[j + 1];
+                        A[j + 1] = z;
+                        w.WriteLine("Swap elements at indices {0} and {1}.",j+1,j+2);
                     }
                 }
             }
